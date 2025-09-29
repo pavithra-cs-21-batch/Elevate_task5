@@ -1,0 +1,22 @@
+Vehicle with Booking
+
+SELECT Vehicle.OwnerName, Vehicle.VehicleNumber,
+       Booking.BookingID, Booking.StartTime, Booking.EndTime
+FROM Vehicle
+INNER JOIN Booking ON Vehicle.VehicleID = Booking.VehicleID;
+
+ParkingSlot with Booking
+
+SELECT ParkingSlot.SlotNumber, ParkingSlot.Status,
+       Booking.BookingID, Booking.Status AS BookingStatus
+FROM ParkingSlot
+LEFT JOIN Booking ON ParkingSlot.SlotID = Booking.SlotID;
+
+Vehicle + Booking + Payment
+
+SELECT Vehicle.OwnerName, Vehicle.VehicleNumber,
+       Booking.BookingID, Booking.StartTime, Booking.EndTime,
+       Payment.Amount, Payment.PaymentMode
+FROM Booking
+INNER JOIN Vehicle ON Booking.VehicleID = Vehicle.VehicleID
+INNER JOIN Payment ON Booking.BookingID = Payment.BookingID;
